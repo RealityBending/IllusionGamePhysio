@@ -168,7 +168,6 @@ var trial_congruent_l = {
         sendMarker("1")
     },
     stimulus: function() { return simon_stimulus('LEFT', 'left') },
-    trial_duration: 2000,
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -192,7 +191,6 @@ var trial_congruent_r = {
         sendMarker("1")
     },
     stimulus: function() { return simon_stimulus('RIGHT', 'right') },
-    trial_duration: 2000,
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -216,7 +214,6 @@ var trial_incongruent_l = {
         sendMarker("1")
     },
     stimulus: function() { return simon_stimulus('LEFT', 'right') },
-    trial_duration: 2000,
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -240,7 +237,6 @@ var trial_incongruent_r = {
         sendMarker("1")
     },
     stimulus: function() { return simon_stimulus('RIGHT', 'left') },
-    trial_duration: 2000,
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -387,6 +383,9 @@ function make_block_finish(block_label, is_last) {
     return {
         type: jsPsychHtmlButtonResponse,
         choices: ["Continue"],
+        on_start: function() {
+            document.body.style.cursor = "auto"
+        },
         stimulus: function () {
             var results = get_results(simon_ies_mean, simon_ies_sd, block_label)
             var show_screen = get_debrief_display(results, is_last ? "Final" : "Block")

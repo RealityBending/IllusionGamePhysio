@@ -300,6 +300,10 @@ var demographics_waitdatasaving = {
         "<p>Done! Please let the experimenter know that you have finished.</p> ",
     choices: ["Continue"],
     data: { screen: "waitdatasaving" },
+    on_start: function() {
+        var ding = new Audio("utils/ding.mp3");
+        ding.play();
+    }
 }
 
 // const demographics_data2 = {
