@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Title shown in tab -->
+    <title>Sussex - Research</title>
+
+    <!-- Load plugins used in Demographics -->
+    <script src="https://unpkg.com/jspsych@8.2.1" type="text/javascript"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-browser-check@1.0.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey@2.0.0"></script>
+    <!-- <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe@0.4"></script> -->
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+
+    <!-- Load plugins used in Illusion Game -->
+    <script src="https://realitybending.github.io/JSmisc/jspsych_extensions/plugin-multiple-slider.js"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
+
+    <!-- Load scripts -->
+    <script src="demographics.js"></script>
+    <script src="questionnaires.js"></script>
+
+    <!-- Illusion -->
+    <script src="stimuli/stimuli_training.js"></script>
+    <script src="stimuli/stimuli_part1.js"></script>
+    <script src="stimuli/stimuli_part2.js"></script>
+    <script src="instructions.js"></script>
+    <script src="IllusionGame.js"></script>
+    <script src="parameters.js"></script>
+
+
+    <link href="https://unpkg.com/jspsych@8.0.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@2.0.0/css/survey.css" />
+
+    <style>
+        .blacktext {
+            color: rgb(0, 0, 0);
+        }
+    </style>
+</head>
+
+<body></body>
+
+<script>
+
+    var participant_ID = {
+        type: jsPsychSurvey,
+        survey_json: {
+            title: "About yourself",
+            completeText: "Continue",
+            pageNextText: "Next",
+            pagePrevText: "Previous",
+            goNextPageAutomatic: false,
+            showQuestionNumbers: false,
+            on_start: function () {
+                jsPsych.progressBar.progress = 0.0
+            },
+            pages: [
+                {
+                    elements: [
+                        {
+                            title: "Enter the participant's ID:",
+                            type: "text",
+                            placeholder: "P000",
+                            name: "Participant_ID",
+                            isRequired: true,
+                        },
+                    ],
+                },
+            ],
+        },
+        data: {
+            screen: "ppt_id_ig",
+        },
+    }
+
+    // Initialize experiment ===============================================================
+    var jsPsych = initJsPsych({
+            show_progress_bar: false,
+            message_progress_bar: "Progress",
+        on_finish: function () {
+            // Get participant ID
+            let participantID = jsPsych.data
+                .get()
+                .filter({ screen: "ppt_id_ig" })
+                .values()[0].response["Participant_ID"]
+
+            // Save as JSON file locally
+            jsPsych.data.get().localSave("json", `${participantID}_ig.json`)
+            jsPsych.data.get().localSave("csv", `${participantID}_ig.csv`) // CSV may be unnecessary
+        },
+    })
+
+    // Initialize timeline
+    var timeline = []
+
+    // Enter fullscreen mode
+    timeline.push({
+        type: jsPsychFullscreen,
+        fullscreen_mode: true,
+        delay_after: 0,
+    })
+
+    // Demographics ========================================================
+    timeline.push(participant_ID)
+
+
+    // Illusion Game =======================================================
+    // Randomize order of the 2 parts
+    var ig_parts = jsPsych.randomization.shuffle([
+        IG_create_block(stimuli_part1, (show_marker = false)),
+        IG_create_block(stimuli_part2, (show_marker = false)),
+    ])
+
+    // Randomize questionnaires 
+    //var questionnaires = jsPsych.randomization.shuffle([ipip6_questionnaire, pid5_questionnaire]) // CHANGE
+
+    ig_timeline = {
+        timeline: [
+            ig_practice,
+            ig_parts[0],
+            //questionnaires_instructions,
+            //questionnaires,
+            ig_parts[1],
+        ],
+    }
+
+    timeline.push(ig_timeline)
+
+    // Counterbalance order of questionnaires ==============================
+    //  var tasks = jsPsych.randomization.shuffle([ig_timeline, pcs_timeline])
+    //  timeline.push(tasks[0])
+    //  timeline.push(tasks[1])
+
+    // // End =================================================================
+    timeline.push(demographics_waitdatasaving)
+
+    // Save data via DataPipe COMMENTED OUT FOR TIME BEING
+    //timeline.push({
+        //type: jsPsychPipe,
+        //action: "save",
+        //experiment_id: "HT1KZXEA6gvR", // This in generated in the DataPipe interface CHANGE
+        //filename: `${jsPsych.randomization.randomID(10)}.csv`,
+        //data_string: () => jsPsych.data.get().csv(),
+    //})
+
+    // Exit fullscreen mode
+    timeline.push({
+        type: jsPsychFullscreen,
+        fullscreen_mode: false,
+    })
+
+    //timeline.push(
+    //    demographics_endscreen(
+    //        "https://realitybending.github.io/IllusionGamePhenomenologicalControl/experiment?exp=snow" // CHANGE
+    //    )
+    //)
+
+    /* ----------------- Run the timeline ----------------- */
+    jsPsych.run(timeline)
+    // jsPsych.simulate(timeline, "visual")
+    // jsPsych.simulate(timeline, "data-only")
+
+    // Run: first sync then start experiment =================================================================
+    syncLSL()
+        .then(function () {
+            startExperiment()
+        })
+        .catch(function (err) {
+            console.warn("Proceeding without LSL sync (sync failed):", err)
+            startExperiment()
+        })
+</script>
+
+</html>

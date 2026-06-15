@@ -1,0 +1,19 @@
+- REINSTALLING OpenMuse:
+python -m pip uninstall OpenMuse
+python -m pip install https://github.com/DominiqueMakowski/OpenMuse/zipball/dev
+
+- FIND MUSE DEVICE
+OpenMuse find
+
+- STREAMING (LOW-ENERGY PRESET):
+OpenMuse stream --address 00:55:DA:B9:FA:20 --preset p21
+OpenMuse stream --address 00:55:DA:BA:05:F9 --preset p21
+OpenMuse stream --address 00:55:DA:BB:CD:CD --preset p21
+
+- STREAMING (DEFAULT PRESET - FOR DATA COLLECTION):
+OpenMuse stream --address 00:55:DA:B9:FA:20
+OpenMuse stream --address 00:55:DA:BA:05:F9
+OpenMuse stream --address 00:55:DA:BB:CD:CD
+
+- VIEW MUSE DEVICE
+OpenMuse view
