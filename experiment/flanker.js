@@ -70,9 +70,7 @@ var instructions = {
         <br>
         <p>In this game of speed and reflex, you will need to select the correct response according to the <b>orientation of the middle arrow</b> as fast and as correctly as possible, while <b>resisting the surrounding arrows</b>.</p>
         <br>
-        <p>You have a maximum of <b>2 seconds</b> to respond to each trial.</p>
-        <br>
-        <p>You will first have a chance to practice this task. Press "Continue" to start the practice trials. The block will begin with a <b>3 - 2 - 1</b> countdown.</p>
+        <p>You will first have a chance to practice this task. Press "Continue" to start the practice trials. The block will begin with a <b>3-2-1</b> countdown.</p>
     `
 }
 
@@ -279,9 +277,7 @@ var begin = {
         <br>
         <p>In this game of speed and reflex, you will need to select the correct response according to the <b>orientation of the middle arrow</b> as fast and as correctly as possible, while <b>resisting the surrounding arrows</b>.</p>
         <br>
-        <p>You have a maximum of 2 seconds to respond to each trial.</p>
-        <br>
-        <p>Press "Continue" to start the experimental trials. Each block will begin with a <b>3 - 2 - 1</b> countdown.</p>
+        <p>Press "Continue" to start the experimental trials. Each block will begin with a <b>3-2-1</b> countdown.</p>
     `
 }
 
