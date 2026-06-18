@@ -59,18 +59,16 @@ var instructions = {
     type: jsPsychHtmlButtonResponse,
     choices: ["Continue"],
     stimulus: `
-    <h2><b>Word Task</b></h2>
-        <p>In this task, you will see a word - either "<b>LEFT</b>" or "<b>RIGHT</b>" - appearing on the left or right side of the screen.</p>
+    <h2><b>Arrow Task</b></h2>
+        <p>In this task, you will see an arrow - either "<b>&lt;</b>" or "<b>&gt;</b>" - appearing on the left or right side of the screen.</p>
         <br>
-        <p>Your job is to respond based on the <b>meaning</b> of the word, and ignore where it appears on the screen:</p>
-        <p>If the word says <b>LEFT</b>, press the <b>LEFT arrow key (&larr;)</b>.</p>
-        <p>If the word says <b>RIGHT</b>, press the <b>RIGHT arrow key (&rarr;)</b>.</p>
+        <p>Your job is to respond based on the <b>direction</b> of the arrow, and ignore where it appears on the screen:</p>
+        <p>If the arrow points <b>left (&lt;)</b>, press the <b>LEFT arrow key (&larr;)</b>.</p>
+        <p>If the arrow points <b>right (&gt;)</b>, press the <b>RIGHT arrow key (&rarr;)</b>.</p>
         <br>
-        <p>In this game of speed and reflex, you will need to select the correct response according to the <b>meaning of the word</b> as fast and as correctly as possible, while <b>resisting the location of the word</b>.</p>
+        <p>In this game of speed and reflex, you will need to select the correct response according to the <b>direction of the arrow</b> as fast and as correctly as possible, while <b>resisting the location of the arrow</b>.</p>
         <br>
-        <p>You have a maximum of <b>2 seconds</b> to respond to each trial.</p>
-        <br>
-        <p>You will first have a chance to practice this task. Press "Continue" to start the practice trials. The block will begin with a <b>3 - 2 - 1</b> countdown.</p>
+        <p>You will first have a chance to practice this task. Press "Continue" to start the practice trials. The block will begin with a <b>3-2-1</b> countdown.</p>
     `
 }
 
@@ -139,7 +137,7 @@ var countdown = {
 // -----------------------
 // Stimuli
 // -----------------------
-function simon_stimulus(word, side) {
+function simon_stimulus(arrow, side) {
     var justify = side === 'left' ? 'flex-start' : 'flex-end'
     return `
         <div style="
@@ -152,11 +150,11 @@ function simon_stimulus(word, side) {
             box-sizing: border-box;
         ">
             <span style="
-                font-size: 80px;
-                font-weight: bold;
+                font-size: 150px;
+                font-weight: regular;
                 font-family: monospace;
                 letter-spacing: 4px;
-            ">${word}</span>
+            ">${arrow}</span>
         </div>
     `
 }
@@ -167,7 +165,7 @@ var trial_congruent_l = {
         create_marker(marker1, (color = "black"))
         sendMarker("1")
     },
-    stimulus: function() { return simon_stimulus('LEFT', 'left') },
+    stimulus: function() { return simon_stimulus('&lt;', 'left') },
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -175,7 +173,7 @@ var trial_congruent_l = {
         stimulus_type: 'congruent',
         target_direction: 'left',
         stimulus_position: 'left',
-        stimulus_word: 'LEFT'
+        stimulus_word: '<'
     },
     on_finish: function (data) {
         document.querySelector("#marker1")?.remove()
@@ -190,7 +188,7 @@ var trial_congruent_r = {
         create_marker(marker1, (color = "black"))
         sendMarker("1")
     },
-    stimulus: function() { return simon_stimulus('RIGHT', 'right') },
+    stimulus: function() { return simon_stimulus('&gt;', 'right') },
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -198,7 +196,7 @@ var trial_congruent_r = {
         stimulus_type: 'congruent',
         target_direction: 'right',
         stimulus_position: 'right',
-        stimulus_word: 'RIGHT'
+        stimulus_word: '>'
     },
     on_finish: function (data) {
         document.querySelector("#marker1")?.remove()
@@ -213,7 +211,7 @@ var trial_incongruent_l = {
         create_marker(marker1, (color = "black"))
         sendMarker("1")
     },
-    stimulus: function() { return simon_stimulus('LEFT', 'right') },
+    stimulus: function() { return simon_stimulus('&lt;', 'right') },
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -221,7 +219,7 @@ var trial_incongruent_l = {
         stimulus_type: 'incongruent',
         target_direction: 'left',
         stimulus_position: 'right',
-        stimulus_word: 'LEFT'
+        stimulus_word: '<'
     },
     on_finish: function (data) {
         document.querySelector("#marker1")?.remove()
@@ -236,7 +234,7 @@ var trial_incongruent_r = {
         create_marker(marker1, (color = "black"))
         sendMarker("1")
     },
-    stimulus: function() { return simon_stimulus('RIGHT', 'left') },
+    stimulus: function() { return simon_stimulus('&gt;', 'left') },
     post_trial_gap: 500,
     choices: ['ArrowLeft', 'ArrowRight'],
     data: {
@@ -244,7 +242,7 @@ var trial_incongruent_r = {
         stimulus_type: 'incongruent',
         target_direction: 'right',
         stimulus_position: 'left',
-        stimulus_word: 'RIGHT'
+        stimulus_word: '>'
     },
     on_finish: function (data) {
         document.querySelector("#marker1")?.remove()
@@ -263,15 +261,13 @@ var begin = {
     <h2><b style="color: #10db10;">Main Task</b></h2>
         <p>Now, we can move onto the main experimental trials.</p>
         <br>
-        <p><i>Again</i>, your job is to respond based on the <b>meaning</b> of the word, and ignore where it appears on the screen:</p>
-        <p>If the word says <b>LEFT</b>, press the <b>LEFT arrow key (&larr;)</b>.</p>
-        <p>If the word says <b>RIGHT</b>, press the <b>RIGHT arrow key (&rarr;)</b>.</p>
+        <p><i>Again</i>, your job is to respond based on the <b>direction</b> of the arrow, and ignore where it appears on the screen:</p>
+        <p>If the arrow points <b>left (&lt;)</b>, press the <b>LEFT arrow key (&larr;)</b>.</p>
+        <p>If the arrow points <b>right (&gt;)</b>, press the <b>RIGHT arrow key (&rarr;)</b>.</p>
         <br>
-        <p>In this game of speed and reflex, you will need to select the correct response according to the <b>meaning of the word</b> as fast and as correctly as possible, while <b>resisting the location of the word</b>.</p>
+        <p>In this game of speed and reflex, you will need to select the correct response according to the <b>direction of the arrow</b> as fast and as correctly as possible, while <b>resisting the location of the arrow</b>.</p>
         <br>
-        <p>You have a maximum of <b>2 seconds</b> to respond to each trial.</p>
-        <br>
-        <p>Press "Continue" to start the experimental trials. Each block will begin with a <b>3 - 2 - 1</b> countdown.</p></p>
+        <p>Press "Continue" to start the experimental trials. Each block will begin with a <b>3-2-1</b> countdown.</p></p>
     `
 }
 
