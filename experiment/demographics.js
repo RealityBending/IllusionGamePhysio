@@ -42,7 +42,7 @@ const demographics_consent = {
                     <b>Please read this information carefully</b> and then, if you wish to take part, please acknowledge that you have fully understood this sheet, and that you consent to take part in the study as it is described here.</p>
                     
                     <p><b>Who has approved this study?</b><br>
-                    This study has been approved by the Faculty Research Ethics Committee: Science, Engineering and Technology, and the project reference number is 2026-2040-2277.
+                    This study has been approved by the Faculty Research Ethics Committee: Science, Engineering and Technology, and the project Review Reference is 2026-2040-2536.
                     
                     <p><b>Insurance</b><br>  
                     The University of Sussex has insurance in place to cover its legal liabilities in respect of this study.
