@@ -24,7 +24,7 @@ const demographics_consent = {
 
                     <p><b>Why have I been invited and what will I do?</b><br>
                     The goal is to investigate how our brains can unconsciously adapt and shape our perception to achieve desired goals. In this experiment, you will complete the <b>Illusion Game</b> - a task of speed and reflex in which you will need to make judgements whilst resisting different visual illusions. You will also be presented with other cognitive tasks and some questionnaires, in which you will be asked questions about your personality, habits, and physical sensations that you typically experience in various settings, such as during stress, sexual activity, or at rest.
-                    The whole experiment will take <b style='color:#FF5722;'>~90 min</b> to complete, from setting up physiological sensors to the debriefing.</p>
+                    The whole experiment will take roughly <b style='color:#FF5722;'>90-120 mins</b> to complete, from setting up physiological sensors to the debriefing.</p>
                         
                     <p><b>Do I have to take part?</b><br>
                     Your participation is entirely voluntary. You are free to choose not to take part, or to withdraw at any stage without having to give a reason and without being penalised in any way.
@@ -38,7 +38,7 @@ const demographics_consent = {
                     We kindly ask that you refrain from participating if you are aware of having skin reactions or allergies to adhesives or the materials used in the electrodes - primarily composed of silver and silver chloride.</p>
 
                     <p><b>What will happen to the results and my personal information?</b><br>
-                    This project is being funded by the <b>Junior Research Associate</b> (JRA) Scheme at the University of Sussex. The results of this research will be presented at the JRA Poster Exhibition in October 2026 and may be written into a scientific publication. Data collected may be used in future research projects. Your anonymity will be ensured in the way described in the consent information below. 
+                    This project is being funded by the <b>Junior Research Associate</b> (JRA) <b>Scheme</b> at the University of Sussex. The results of this research will be presented at the JRA Poster Exhibition in October 2026 and may be written into a scientific publication. Data collected may be used in future research projects. Your anonymity will be ensured in the way described in the consent information below. 
                     <b>Please read this information carefully</b> and then, if you wish to take part, please acknowledge that you have fully understood this sheet, and that you consent to take part in the study as it is described here.</p>
                     
                     <p><b>Who has approved this study?</b><br>

@@ -59,16 +59,16 @@ var instructions = {
     type: jsPsychHtmlButtonResponse,
     choices: ["Continue"],
     stimulus: `
-    <h2><b>Arrow Task</b></h2>
-        <p>In this task, you will see an arrow - either "<b>&lt;</b>" or "<b>&gt;</b>" - appearing on the left or right side of the screen.</p>
+    <h2><b>Single Arrow Orientation Game</b></h2>
+        <p>In this game, you will see an arrow - either "<b>&lt;</b>" or "<b>&gt;</b>" - appearing on the left or right side of the screen.</p>
         <br>
         <p>Your job is to respond based on the <b>direction</b> of the arrow, and ignore where it appears on the screen:</p>
-        <p>If the arrow points <b>left (&lt;)</b>, press the <b>LEFT arrow key (&larr;)</b>.</p>
-        <p>If the arrow points <b>right (&gt;)</b>, press the <b>RIGHT arrow key (&rarr;)</b>.</p>
+        <p>When the arrow points to the <b>left (&lt;)</b>, press the <b>LEFT arrow key (&larr;)</b> on the keyboard.</p>
+        <p>When the arrow points to the <b>right (&gt;)</b>, press the <b>RIGHT arrow key (&rarr;)</b> on the keyboard.</p>
         <br>
-        <p>In this game of speed and reflex, you will need to select the correct response according to the <b>direction of the arrow</b> as fast and as correctly as possible, while <b>resisting the location of the arrow</b>.</p>
+        <p>In this game of speed and reflex, consisting of several rounds, you will need to select the correct response according to the <b>direction of the arrow</b> as fast and as correctly as possible, while <b>resisting the location of the arrow</b>.</p>
         <br>
-        <p>You will first have a chance to practice this task. Press "Continue" to start the practice trials. The block will begin with a <b>3-2-1</b> countdown.</p>
+        <p>You will first have a chance to practice. Press "Continue" to start the practice trials. The round will begin with a <b>3-2-1</b> countdown.</p>
     `
 }
 
@@ -260,14 +260,15 @@ var begin = {
     stimulus: `
     <h2><b style="color: #10db10;">Main Task</b></h2>
         <p>Now, we can move onto the main experimental trials.</p>
+        <p><i>Again</i>, in this game, you will see an arrow - either "<b>&lt;</b>" or "<b>&gt;</b>" - appearing on the left or right side of the screen.</p>
         <br>
-        <p><i>Again</i>, your job is to respond based on the <b>direction</b> of the arrow, and ignore where it appears on the screen:</p>
-        <p>If the arrow points <b>left (&lt;)</b>, press the <b>LEFT arrow key (&larr;)</b>.</p>
-        <p>If the arrow points <b>right (&gt;)</b>, press the <b>RIGHT arrow key (&rarr;)</b>.</p>
+        <p>Your job is to respond based on the <b>direction</b> of the arrow, and ignore where it appears on the screen:</p>
+        <p>When the arrow points to the <b>left (&lt;)</b>, press the <b>LEFT arrow key (&larr;)</b> on the keyboard.</p>
+        <p>When the arrow points to the <b>right (&gt;)</b>, press the <b>RIGHT arrow key (&rarr;)</b> on the keyboard.</p>
         <br>
-        <p>In this game of speed and reflex, you will need to select the correct response according to the <b>direction of the arrow</b> as fast and as correctly as possible, while <b>resisting the location of the arrow</b>.</p>
+        <p>In this game of speed and reflex, consisting of several rounds, you will need to select the correct response according to the <b>direction of the arrow</b> as fast and as correctly as possible, while <b>resisting the location of the arrow</b>.</p>
         <br>
-        <p>Press "Continue" to start the experimental trials. Each block will begin with a <b>3-2-1</b> countdown.</p></p>
+        <p>Press "Continue" to start the experimental trials. Each round will begin with a <b>3-2-1</b> countdown.</p></p>
     `
 }
 
@@ -349,7 +350,7 @@ function get_results(ies_mean, ies_sd, block_num) {
 function get_debrief_display(results, type = "Block") {
     if (type === "Block") {
         var score =
-            "<p>Your score for this block is:</p>" +
+            "<p>Your score for this round is:</p>" +
             '<p style="color: black; font-size: 48px; font-weight: bold;">' +
             Math.round(results.score * 10) / 10 +
             " %</p>"
@@ -388,15 +389,15 @@ function make_block_finish(block_label, is_last) {
 
             var title = is_practice
                 ? '<h2><b style="color: #10db10;">Practice Complete!</b></h2>'
-                : '<h2><b style="color: #10db10;">Block ' + block_label + ' Complete!</b></h2>'
+                : '<h2><b style="color: #10db10;">Round ' + block_label + ' Complete!</b></h2>'
 
             var next_text
             if (is_last) {
-                next_text = '<p>This was the final block. Press "Continue" to finish.</p>'
+                next_text = '<p>This was the final round. Press "Continue" to finish.</p>'
             } else if (is_practice) {
                 next_text = '<p>Press "Continue" to move on to the main task.</p>'
             } else {
-                next_text = '<p>Can you do better in the next block?</p>'
+                next_text = '<p>Can you do better in the next round? You may proceed when you are ready.</p>'
             }
 
             return (

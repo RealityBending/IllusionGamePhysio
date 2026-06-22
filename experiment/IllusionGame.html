@@ -117,24 +117,19 @@
     ])
 
     // Randomize questionnaires 
-    //var questionnaires = jsPsych.randomization.shuffle([ipip6_questionnaire, pid5_questionnaire]) // CHANGE
+    var questionnaires = jsPsych.randomization.shuffle([ipip6_questionnaire])
 
     ig_timeline = {
         timeline: [
             ig_practice,
             ig_parts[0],
-            //questionnaires_instructions,
-            //questionnaires,
+            questionnaires_instructions_2,
+            questionnaires,
             ig_parts[1],
         ],
     }
 
     timeline.push(ig_timeline)
-
-    // Counterbalance order of questionnaires ==============================
-    //  var tasks = jsPsych.randomization.shuffle([ig_timeline, pcs_timeline])
-    //  timeline.push(tasks[0])
-    //  timeline.push(tasks[1])
 
     // // End =================================================================
     timeline.push(demographics_waitdatasaving)
