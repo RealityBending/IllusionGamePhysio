@@ -474,7 +474,7 @@ const questionnaire_ias = {
 const questionnaires_instructions_2 = {
     type: jsPsychHtmlButtonResponse,
     stimulus:
-        "<h2>Questionnaire</h2>" +
+        "<h2>Questionnaires</h2>" +
         "<p>We will continue with a series of questions.<br>It is important that you answer truthfully. Please read the statements carefully and answer according to what describe you the best.</p>",
     choices: ["Continue"],
     data: { screen: "questionnaire_instructions" },
