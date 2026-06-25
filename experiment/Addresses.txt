@@ -1,9 +1,8 @@
 python -m http.server 8002
 
 http://localhost:8002/experiment/RestingState.html
-http://localhost:8002/experiment/Interoception.html
+http://localhost:8002/experiment/Int.html
 http://localhost:8002/experiment/IllusionGame.html
-http://localhost:8002/experiment/Simon.html
-http://localhost:8002/experiment/Flanker.html
+http://localhost:8002/experiment/EC.html
 http://localhost:8002/experiment/Debrief.html
 
