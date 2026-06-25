@@ -53,7 +53,7 @@ function sendMarker(value = "1") {
 }
 
 
-var instructions = {
+var flanker_instructions = {
     type: jsPsychHtmlButtonResponse,
     choices: ["Continue"],
 
@@ -72,6 +72,9 @@ var instructions = {
         <p>In this game of speed and reflex, consisting of several rounds, you will need to select the correct response according to the <b>direction of the middle arrow</b> as fast and as correctly as possible, while <b>resisting the surrounding arrows</b>.</p>
         <br>
         <p>You will first have a chance to practice. Press "Continue" to start the practice trials. The round will begin with a <b>3-2-1</b> countdown.</p>
+        <audio autoplay>
+        <source src = "utils/ding.mp3" type="audio/mpeg">
+        </audio>
     `
 }
 
@@ -83,7 +86,7 @@ var random_duration = function() {
     return durations[Math.floor(Math.random() * durations.length)];
 }
 
-var fixation = {
+var flanker_fixation = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus:
         "<div style='font-size:80px; position:fixed; text-align: center; top:50%; bottom:50%; right:20%; left:20%'>+</div>",
@@ -260,7 +263,7 @@ var trial_incongruent_r = {
 // -----------------------
 // Begin screen (between practice and main task)
 // -----------------------
-var begin = {
+var flanker_begin = {
     type: jsPsychHtmlButtonResponse,
     choices: ["Continue"],
 
@@ -286,12 +289,12 @@ var begin = {
 // -----------------------
 // Block builder
 // -----------------------
-function make_block(block_label, reps) {
+function flanker_make_block(block_label, reps) {
     var block_trials = [
-        { timeline: [fixation, trial_congruent_l] },
-        { timeline: [fixation, trial_congruent_r] },
-        { timeline: [fixation, trial_incongruent_l] },
-        { timeline: [fixation, trial_incongruent_r] }
+        { timeline: [flanker_fixation, trial_congruent_l] },
+        { timeline: [flanker_fixation, trial_congruent_r] },
+        { timeline: [flanker_fixation, trial_incongruent_l] },
+        { timeline: [flanker_fixation, trial_incongruent_r] }
     ];
     return {
         timeline: [countdown, ...jsPsych.randomization.repeat(block_trials, reps)],
@@ -323,7 +326,7 @@ function round_digits(x, digits = 2) {
 }
 
 // IES after each block
-function get_results(ies_mean, ies_sd, block_num) {
+function flanker_get_results(ies_mean, ies_sd, block_num) {
     if (typeof block_num != "undefined") {
         var trials = jsPsych.data.get().filter({ task: "flanker", block: block_num }) // results by block
     } else {
@@ -356,7 +359,7 @@ function get_results(ies_mean, ies_sd, block_num) {
     }
 }
 
-function get_debrief_display(results, type = "Block") {
+function flanker_get_debrief_display(results, type = "Block") {
     if (type === "Block") {
         // Debrief at end of each block
         var score =
@@ -390,7 +393,7 @@ function get_debrief_display(results, type = "Block") {
 var flanker_ies_mean = 1000
 var flanker_ies_sd = 400
 
-function make_block_finish(block_label, is_last) {
+function flanker_make_block_finish(block_label, is_last) {
     var is_practice = block_label === 'practice'
     return {
         type: jsPsychHtmlButtonResponse,
@@ -399,8 +402,8 @@ function make_block_finish(block_label, is_last) {
             document.body.style.cursor = "auto"
         },
         stimulus: function() {
-            var results = get_results(flanker_ies_mean, flanker_ies_sd, block_label)
-            var show_screen = get_debrief_display(results, is_last ? "Final" : "Block")
+            var results = flanker_get_results(flanker_ies_mean, flanker_ies_sd, block_label)
+            var show_screen = flanker_get_debrief_display(results, is_last ? "Final" : "Block")
 
             var title = is_practice
                 ? '<h2><b style="color: #10db10;">Practice Complete!</b></h2>'

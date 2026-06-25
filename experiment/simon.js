@@ -55,7 +55,7 @@ function sendMarker(value = "1") {
 // -----------------------
 // Instructions
 // -----------------------
-var instructions = {
+var simon_instructions = {
     type: jsPsychHtmlButtonResponse,
     choices: ["Continue"],
     stimulus: `
@@ -69,6 +69,9 @@ var instructions = {
         <p>In this game of speed and reflex, consisting of several rounds, you will need to select the correct response according to the <b>direction of the arrow</b> as fast and as correctly as possible, while <b>resisting the location of the arrow</b>.</p>
         <br>
         <p>You will first have a chance to practice. Press "Continue" to start the practice trials. The round will begin with a <b>3-2-1</b> countdown.</p>
+        <audio autoplay>
+        <source src = "utils/ding.mp3" type="audio/mpeg">
+        </audio>
     `
 }
 
@@ -80,7 +83,7 @@ var random_duration = function () {
     return durations[Math.floor(Math.random() * durations.length)]
 }
 
-var fixation = {
+var simon_fixation = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: "<div style='font-size:80px; position:fixed; text-align:center; top:50%; bottom:50%; right:20%; left:20%'>+</div>",
     choices: "NO_KEYS",
@@ -254,7 +257,7 @@ var trial_incongruent_r = {
 // -----------------------
 // Begin screen (between practice and main task)
 // -----------------------
-var begin = {
+var simon_begin = {
     type: jsPsychHtmlButtonResponse,
     choices: ["Continue"],
     stimulus: `
@@ -275,12 +278,12 @@ var begin = {
 // -----------------------
 // Block builder
 // -----------------------
-function make_block(block_label, reps) {
+function simon_make_block(block_label, reps) {
     var block_trials = [
-        { timeline: [fixation, trial_congruent_l] },
-        { timeline: [fixation, trial_congruent_r] },
-        { timeline: [fixation, trial_incongruent_l] },
-        { timeline: [fixation, trial_incongruent_r] }
+        { timeline: [simon_fixation, trial_congruent_l] },
+        { timeline: [simon_fixation, trial_congruent_r] },
+        { timeline: [simon_fixation, trial_incongruent_l] },
+        { timeline: [simon_fixation, trial_incongruent_r] }
     ]
     return {
         timeline: [countdown, ...jsPsych.randomization.repeat(block_trials, reps)],
@@ -314,7 +317,7 @@ function round_digits(x, digits = 2) {
 var simon_ies_mean = 1000
 var simon_ies_sd = 400
 
-function get_results(ies_mean, ies_sd, block_num) {
+function simon_get_results(ies_mean, ies_sd, block_num) {
     if (typeof block_num != "undefined") {
         var trials = jsPsych.data.get().filter({ task: "simon", block: block_num })
     } else {
@@ -347,7 +350,7 @@ function get_results(ies_mean, ies_sd, block_num) {
     }
 }
 
-function get_debrief_display(results, type = "Block") {
+function simon_get_debrief_display(results, type = "Block") {
     if (type === "Block") {
         var score =
             "<p>Your score for this round is:</p>" +
@@ -375,7 +378,7 @@ function get_debrief_display(results, type = "Block") {
     }
 }
 
-function make_block_finish(block_label, is_last) {
+function simon_make_block_finish(block_label, is_last) {
     var is_practice = block_label === 'practice'
     return {
         type: jsPsychHtmlButtonResponse,
@@ -384,8 +387,8 @@ function make_block_finish(block_label, is_last) {
             document.body.style.cursor = "auto"
         },
         stimulus: function () {
-            var results = get_results(simon_ies_mean, simon_ies_sd, block_label)
-            var show_screen = get_debrief_display(results, is_last ? "Final" : "Block")
+            var results = simon_get_results(simon_ies_mean, simon_ies_sd, block_label)
+            var show_screen = simon_get_debrief_display(results, is_last ? "Final" : "Block")
 
             var title = is_practice
                 ? '<h2><b style="color: #10db10;">Practice Complete!</b></h2>'
