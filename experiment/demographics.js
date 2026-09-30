@@ -30,6 +30,7 @@ const demographics_consent = {
                     Your participation is entirely voluntary. You are free to choose not to take part, or to withdraw at any stage without having to give a reason and without being penalised in any way.
                     If you choose to take part, you will be asked to provide your consent electronically before starting the study.
                     As we are not collecting any personally identifiable information, it will not be possible to withdraw your data after you submit it.
+                    You will be reimbursed with at least <b style='color:#FF5722;'>8 SONA credits</b> for your participation. An experiment duration over 1 hour 30 mins, rounded to the nearest 15 mins, will result in extra credits being granted (i.e., experiment duration of 2 hours = 10 credits).
                     
                     <p><b>Physiological Signals</b><br>
                     We will be recording some of your body's electrical activity using ECG and EEG; both are simple non-intrusive procedures used in research and in the life sciences. 
@@ -38,7 +39,7 @@ const demographics_consent = {
                     We kindly ask that you refrain from participating if you are aware of having skin reactions or allergies to adhesives or the materials used in the electrodes - primarily composed of silver and silver chloride.</p>
 
                     <p><b>What will happen to the results and my personal information?</b><br>
-                    This project is being funded by the <b>Junior Research Associate</b> (JRA) <b>Scheme</b> at the University of Sussex. The results of this research will be presented at the JRA Poster Exhibition in October 2026 and may be written into a scientific publication. Data collected may be used in future research projects. Your anonymity will be ensured in the way described in the consent information below. 
+                    The results of this research will be disseminated in an Undergraduate Research Dissertation and may be written into a scientific publication. Data collected may be used in future research projects. Your anonymity will be ensured in the way described in the consent information below. 
                     <b>Please read this information carefully</b> and then, if you wish to take part, please acknowledge that you have fully understood this sheet, and that you consent to take part in the study as it is described here.</p>
                     
                     <p><b>Who has approved this study?</b><br>
