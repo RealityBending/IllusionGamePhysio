@@ -30,7 +30,7 @@ const demographics_consent = {
                     Your participation is entirely voluntary. You are free to choose not to take part, or to withdraw at any stage without having to give a reason and without being penalised in any way.
                     If you choose to take part, you will be asked to provide your consent electronically before starting the study.
                     As we are not collecting any personally identifiable information, it will not be possible to withdraw your data after you submit it.
-                    You will be reimbursed with at least <b style='color:#FF5722;'>8 SONA credits</b> for your participation. An experiment duration over 1 hour 30 mins, rounded to the nearest 15 mins, will result in extra credits being granted (i.e., experiment duration of 2 hours = 10 credits).
+                    You will be reimbursed with at least <b style='color:#FF5722;'>8 SONA credits</b> for your participation. An experiment duration over 1 hour 30 mins, rounded to the nearest 15 mins, will result in extra credits being granted (e.g., experiment duration of 2 hours = 10 credits).
                     
                     <p><b>Physiological Signals</b><br>
                     We will be recording some of your body's electrical activity using ECG and EEG; both are simple non-intrusive procedures used in research and in the life sciences. 
